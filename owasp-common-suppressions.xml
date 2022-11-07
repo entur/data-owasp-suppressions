@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<suppressions xmlns="https://jeremylong.github.io/DependencyCheck/dependency-suppression.1.3.xsd">
+    <suppress>
+        <notes><![CDATA[
+   file name: sarif4k-0.0.1.jar. False positive, the vulnerable repo is detekt/detekt, but we use detekt/sarif.
+   ]]></notes>
+        <packageUrl regex="true">^pkg:maven/io\.github\.detekt\.sarif4k/sarif4k@.*$</packageUrl>
+        <cve>CVE-2022-0272</cve>
+    </suppress>
+    <suppress>
+        <notes><![CDATA[
+    Pivotal Spring Framework through 5.3.16 with potential RCE if used for Java deserialization of untrusted data (CVE-2016-1000027). This CVE is borderline silly, since it requires obvious misuse of a feature. Not fixable in Spring, since many implementations rely on the functionality. Our apps do not use this.
+   ]]></notes>
+        <packageUrl regex="true">.*spring.*5.3.20.*$</packageUrl>
+        <cve>CVE-2016-1000027</cve>
+    </suppress>
+    <suppress>
+        <notes><![CDATA[
+   file name: google-http-client-gson-1.41.8.jar Misidentified as com.google.code.gson:gson, which we do have (but in a non-vulnerable version)
+   ]]></notes>
+        <packageUrl regex="true">^pkg:maven/com\.google\.http\-client/google\-http\-client\-gson@.*$</packageUrl>
+        <cve>CVE-2022-25647</cve>
+    </suppress>
+
+    <suppress>
+        <notes><![CDATA[
+   file name: spring-security-crypto-5.7.1.jar. Not valid for our version - false positive
+   ]]></notes>
+        <packageUrl regex="true">^pkg:maven/org\.springframework\.security/spring\-security\-crypto@.*$</packageUrl>
+        <vulnerabilityName>CVE-2020-5408</vulnerabilityName>
+    </suppress>
+
+    <suppress>
+        <notes><![CDATA[file name: spring-boot-starter-oauth2-client-2.7.0.jar]]></notes>
+        <packageUrl regex="true">^pkg:maven/org\.springframework\.boot/spring\-boot\-starter\-oauth2\-client@.*$
+        </packageUrl>
+        <cve>CVE-2018-1258</cve>
+        <cve>CVE-2021-22112</cve>
+        <cve>CVE-2022-22976</cve>
+        <cve>CVE-2022-22978</cve>
+    </suppress>
+    <suppress>
+        <notes><![CDATA[file name: spring-boot-starter-security-2.7.0.jar]]></notes>
+        <packageUrl regex="true">^pkg:maven/org\.springframework\.boot/spring\-boot\-starter\-security@.*$</packageUrl>
+        <cve>CVE-2022-22976</cve>
+        <cve>CVE-2022-22978</cve>
+    </suppress>
+    <suppress>
+        <notes><![CDATA[file name: spring-boot-starter-oauth2-resource-server-2.7.0.jar]]></notes>
+        <packageUrl regex="true">
+            ^pkg:maven/org\.springframework\.boot/spring\-boot\-starter\-oauth2\-resource\-server@.*$
+        </packageUrl>
+        <cve>CVE-2018-1258</cve>
+        <cve>CVE-2021-22112</cve>
+        <cve>CVE-2022-22976</cve>
+        <cve>CVE-2022-22978</cve>
+    </suppress>
+    <suppress>
+        <notes>This is not relevant to our use case - requires explicit deserialization from untrusted source</notes>
+        <packageUrl regex="true">^pkg:maven/org\.springframework/spring.*$</packageUrl>
+        <cve>CVE-2016-1000027</cve>
+    </suppress>
+    <suppress>
+        <notes><![CDATA[Misidentification of older grpc package]]></notes>
+        <packageUrl regex="true">^pkg:maven/com\.google\.api\.grpc/grpc\-google\-cloud\-bigquerystorage\-v1beta1@.*$
+        </packageUrl>
+        <cpe>cpe:/a:grpc:grpc</cpe>
+    </suppress>
+    <suppress>
+        <notes><![CDATA[Misidentification of older grpc package   ]]></notes>
+        <packageUrl regex="true">^pkg:maven/com\.google\.api\.grpc/grpc\-google\-cloud\-bigquerystorage\-v1beta2@.*$
+        </packageUrl>
+        <cpe>cpe:/a:grpc:grpc</cpe>
+    </suppress>
+
+    <suppress>
+        <notes>
+            Suppressing this indefinitely. This CVE is unlikely to get addressed, not relevant to our app, and borderline silly in any case. Why would you process untrusted YAML with no checks?
+        </notes>
+        <packageUrl regex="true">^pkg:maven/org\.yaml/snakeyaml@.*$</packageUrl>
+        <cve>CVE-2022-25857</cve>
+        <cve>CVE-2022-38749</cve>
+        <cve>CVE-2022-38751</cve>
+        <cve>CVE-2022-38752</cve>
+        <cve>CVE-2022-38750</cve>
+        <cpe>cpe:/a:yaml_project:yaml</cpe>
+    </suppress>
+</suppressions>
